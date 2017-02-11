@@ -29,6 +29,7 @@ public class BridgeSlabTest extends BasicBlock
     public BridgeSlabTest(String unlocalizedName, float minX, float minY, float minZ, float maxX, float maxY, float maxZ)
     {
         super(unlocalizedName, Material.WOOD, 1.0F, 5.0F);
+        this.setRegistryName(unlocalizedName);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SIDE, Side.BOTTOM).withProperty(WOOD_TYPE, WoodType.OAK));
         new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);

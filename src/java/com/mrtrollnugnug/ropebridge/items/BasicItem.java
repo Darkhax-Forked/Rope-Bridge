@@ -8,5 +8,6 @@ public class BasicItem extends Item{
 		super();
 		this.setUnlocalizedName(unlocalizedName);
 	    this.setCreativeTab(CreativeTabs.TOOLS);
+	    this.setRegistryName(unlocalizedName);
 	}
 }

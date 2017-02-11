@@ -48,6 +48,7 @@ public class BBItem extends Item
     {
         super();
         this.setUnlocalizedName(unlocalizedName);
+        this.setRegistryName(unlocalizedName);
         this.setCreativeTab(CreativeTabs.TOOLS);
         this.setMaxStackSize(1);
         this.setMaxDamage(64);
@@ -90,7 +91,7 @@ public class BBItem extends Item
             }, 500);
         }
         //TODO Param Changed for onItemRightClick removing itemStackIn
-        return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);
+        return ActionResult.newResult(EnumActionResult.PASS, null);
     }
 
     /**
@@ -323,12 +324,6 @@ public class BBItem extends Item
                 viewSnap = false;
                 clickTimer.cancel();
             }
-            // }
-            // else {
-            // zoomTowards(playerFov);
-            // viewSnap = false;
-            // clickTimer.cancel();
-            // }
         }
     }
 

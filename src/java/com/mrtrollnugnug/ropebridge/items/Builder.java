@@ -134,8 +134,8 @@ public class Builder
         int stringHad = 0;
 
         for (int i = 0; i < 36; i++) {
-            ItemStack stack = player.inventory.mainInventory[i];
-            if (stack == null) {
+            ItemStack stack = player.inventory.getItemStack();
+            if (stack.isEmpty()) {
                 continue;
             }
             String name = stack.getItem().getUnlocalizedName();
@@ -164,8 +164,8 @@ public class Builder
         int stringNeeded = 1 + Math.round(dist / 2);
 
         for (int i = 0; i < 36; i++) {
-            ItemStack stack = player.inventory.mainInventory[i];
-            if (stack == null) {
+            ItemStack stack = player.inventory.getItemStack();
+            if (stack.isEmpty()) {
                 continue;
             }
             String name = stack.getItem().getUnlocalizedName();
@@ -263,9 +263,9 @@ public class Builder
 
     private static int getWoodType(EntityPlayer player)
     {
-        for (int i = 0; i < player.inventory.mainInventory.length; i++) {
-            ItemStack stack = player.inventory.mainInventory[i];
-            if (stack == null) {
+        for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
+            ItemStack stack = player.inventory.getItemStack();
+            if (stack.isEmpty()) {
                 continue;
             }
             String name = stack.getItem().getUnlocalizedName();

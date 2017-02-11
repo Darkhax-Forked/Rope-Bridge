@@ -11,10 +11,10 @@ public class ModItems {
 	public static Item bridgeBuilderHandle;
 	
 	public static void createItems() {
-		GameRegistry.registerItem(bridgeBuilder = new BBItem("bridge_builder"), "bridge_builder");
-		GameRegistry.registerItem(bridgeBuilderHook = new BasicItem("bridge_builder_hook"), "bridge_builder_hook");
-		GameRegistry.registerItem(bridgeBuilderBarrel = new BasicItem("bridge_builder_barrel"), "bridge_builder_barrel");
-		GameRegistry.registerItem(bridgeBuilderHandle = new BasicItem("bridge_builder_handle"), "bridge_builder_handle");
+		GameRegistry.register(bridgeBuilder = new BBItem("bridge_builder"));
+		GameRegistry.register(bridgeBuilderHook = new BasicItem("bridge_builder_hook"));
+		GameRegistry.register(bridgeBuilderBarrel = new BasicItem("bridge_builder_barrel"));
+		GameRegistry.register(bridgeBuilderHandle = new BasicItem("bridge_builder_handle"));
 	}
 	
 	

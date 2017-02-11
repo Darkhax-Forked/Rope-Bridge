@@ -56,7 +56,7 @@ public class BridgeMessageHandler implements IMessageHandler<BridgeMessage, IMes
                 	}
                 	case 2: { // set inventory
                 		if (bridgeMessage.stackSize == 0) {
-                			player.inventory.mainInventory[bridgeMessage.invIndex] = null;
+                			player.inventory = null;
                 		}
                 		else {
                 		}
