@@ -140,10 +140,10 @@ public class Builder
             }
             String name = stack.getItem().getUnlocalizedName();
             if (name.equals("item.string")) {
-                stringHad += stack.stackSize;
+                stringHad += stack.getMaxStackSize();
             }
             if (name.equals("tile.woodSlab")) {
-                slabsHad += stack.stackSize;
+                slabsHad += stack.getMaxStackSize();
             }
         }
         if (slabsHad >= slabsNeeded && stringHad >= stringNeeded) {
@@ -170,13 +170,13 @@ public class Builder
             }
             String name = stack.getItem().getUnlocalizedName();
             if (name.equals("item.string")) {
-                if (stack.stackSize > stringNeeded) {
+                if (stack.getMaxStackSize() > stringNeeded) {
                     // stack.stackSize = stack.stackSize - stringNeeded;
-       		Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, stack.stackSize - stringNeeded));
+       		Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, stack.getMaxStackSize() - stringNeeded));
                     stringNeeded = 0;
                 }
                 else {
-                    stringNeeded -= stack.stackSize;
+                    stringNeeded -= stack.getMaxStackSize();
                     // player.inventory.mainInventory[i] = null;
                     // Update on server
                     Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, 0));
@@ -184,14 +184,14 @@ public class Builder
                 }
             }
             if (name.equals("tile.woodSlab")) {
-                if (stack.stackSize > slabsNeeded) {
+                if (stack.getMaxStackSize() > slabsNeeded) {
                     // stack.stackSize = stack.stackSize - slabsNeeded;
                     // Update on server
-                    Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, stack.stackSize - slabsNeeded));
+                    Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, stack.getMaxStackSize() - slabsNeeded));
                     slabsNeeded = 0;
                 }
                 else {
-                    slabsNeeded -= stack.stackSize;
+                    slabsNeeded -= stack.getMaxStackSize();
                     // player.inventory.mainInventory[i] = null;
                     // update on server
                     Main.snw.sendToServer(new BridgeMessage(2, 0, 0, 0, i, 0));

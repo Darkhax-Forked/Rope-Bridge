@@ -63,9 +63,9 @@ public class BBItem extends Item
     {
         playerIn.hasAchievement(Main.craftAchievement);
     }
-
+    
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         if (worldIn.isRemote) {
             world = worldIn;
@@ -89,6 +89,7 @@ public class BBItem extends Item
                 }
             }, 500);
         }
+        //TODO Param Changed for onItemRightClick removing itemStackIn
         return ActionResult.newResult(EnumActionResult.PASS, itemStackIn);
     }
 
@@ -305,15 +306,7 @@ public class BBItem extends Item
     {
         if (worldIn.isRemote && entityIn instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityIn;
-            // if (player == null) {
-            // player = (EntityPlayer) entityIn;
-            // }
-
-            // TODO May cause problem
-            // if (((EntityPlayer) entityIn).getHeldItemMainhand() != null) {
-            // if (((EntityPlayer)
-            // entityIn).getHeldItemMainhand().getUnlocalizedName().equals(stack.getUnlocalizedName()))
-            // {
+            
             if (isSelected) {
                 if (viewSnap) {
                     if (isSelected) {

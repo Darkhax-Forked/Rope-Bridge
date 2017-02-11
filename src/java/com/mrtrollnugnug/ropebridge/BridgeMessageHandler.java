@@ -16,18 +16,17 @@ public class BridgeMessageHandler implements IMessageHandler<BridgeMessage, IMes
 
 	@Override
 	public IMessage onMessage(BridgeMessage bridgeMessage, MessageContext context) {
-		final BridgeMessage message = bridgeMessage; // Used for Sounds
 		final MessageContext ctx = context;
-		IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world;
+		IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
 		// or Minecraft.getMinecraft() on the client
         mainThread.addScheduledTask(new Runnable() {
             @Override
             public void run() {
-            	EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+            	EntityPlayerMP player = ctx.getServerHandler().player;
         		WorldServer world = (WorldServer) player.world;
-                switch (message.command) {
+                switch (bridgeMessage.command) {
                 	case 0: { // Sound
-                		switch  (message.invIndex) {
+                		switch  (bridgeMessage.invIndex) {
                 		case 0: { break; }
                 		case 1: { break; }
                 		case 2: { break; }
@@ -41,10 +40,10 @@ public class BridgeMessageHandler implements IMessageHandler<BridgeMessage, IMes
                 		break;*/
                 		}
                 	case 1: { // set a block
-                		BlockPos blockPos = new BlockPos(message.posX, message.posY, message.posZ);
+                		BlockPos blockPos = new BlockPos(bridgeMessage.posX, bridgeMessage.posY, bridgeMessage.posZ);
                 		world.destroyBlock(blockPos, true);
                 		Block blk;
-                		switch (message.invIndex) {
+                		switch (bridgeMessage.invIndex) {
                 		case 0: { blk = Blocks.AIR;				break; }
                 		case 1: { blk = ModBlocks.bridgeBlock1; break; }
                 		case 2: { blk = ModBlocks.bridgeBlock2; break; }
@@ -52,15 +51,14 @@ public class BridgeMessageHandler implements IMessageHandler<BridgeMessage, IMes
                 		case 4: { blk = ModBlocks.bridgeBlock4; break; }
                 		default: { blk = Blocks.AIR; break; }
                 		}
-                		world.setBlockState(blockPos, blk.getStateFromMeta(message.stackSize));
+                		world.setBlockState(blockPos, blk.getStateFromMeta(bridgeMessage.stackSize));
                 		break;
                 	}
                 	case 2: { // set inventory
-                		if (message.stackSize == 0) {
-                			player.inventory.mainInventory[message.invIndex] = null;
+                		if (bridgeMessage.stackSize == 0) {
+                			player.inventory.mainInventory[bridgeMessage.invIndex] = null;
                 		}
                 		else {
-                    		player.inventory.mainInventory[message.invIndex].stackSize = message.stackSize;
                 		}
                 		break;
                 	}
